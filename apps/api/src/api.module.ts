@@ -12,7 +12,8 @@ import { UsersService } from './users/users.service';
         name: 'USERS_SERVICE',
         transport: Transport.TCP,
         options: {
-          port: 3001,
+          host: process.env.USERS_SERVICE_HOST || '127.0.0.1',
+          port: parseInt(process.env.USERS_SERVICE_PORT || '3001'),
         },
       },
     ]),

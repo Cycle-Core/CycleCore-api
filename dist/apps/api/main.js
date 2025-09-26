@@ -70,7 +70,8 @@ exports.ApiModule = ApiModule = __decorate([
                     name: 'USERS_SERVICE',
                     transport: microservices_1.Transport.TCP,
                     options: {
-                        port: 3001,
+                        host: process.env.USERS_SERVICE_HOST || '127.0.0.1',
+                        port: parseInt(process.env.USERS_SERVICE_PORT || '3001'),
                     },
                 },
             ]),
@@ -355,6 +356,43 @@ __exportStar(__webpack_require__(/*! ./tracker/dto/create-tracker.dto */ "./libs
 __exportStar(__webpack_require__(/*! ./tracker/dto/update-tracker.dto */ "./libs/contracts/src/tracker/dto/update-tracker.dto.ts"), exports);
 __exportStar(__webpack_require__(/*! ./epi-schema/dto/create-epi-schema.dto */ "./libs/contracts/src/epi-schema/dto/create-epi-schema.dto.ts"), exports);
 __exportStar(__webpack_require__(/*! ./epi-schema/dto/update-epi-schema.dto */ "./libs/contracts/src/epi-schema/dto/update-epi-schema.dto.ts"), exports);
+__exportStar(__webpack_require__(/*! ./obj-type/dto/create-obj-type.dto */ "./libs/contracts/src/obj-type/dto/create-obj-type.dto.ts"), exports);
+__exportStar(__webpack_require__(/*! ./obj-type/dto/update-obj-type.dto */ "./libs/contracts/src/obj-type/dto/update-obj-type.dto.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./libs/contracts/src/obj-type/dto/create-obj-type.dto.ts":
+/*!****************************************************************!*\
+  !*** ./libs/contracts/src/obj-type/dto/create-obj-type.dto.ts ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CreateObjTypeDto = void 0;
+class CreateObjTypeDto {
+}
+exports.CreateObjTypeDto = CreateObjTypeDto;
+
+
+/***/ }),
+
+/***/ "./libs/contracts/src/obj-type/dto/update-obj-type.dto.ts":
+/*!****************************************************************!*\
+  !*** ./libs/contracts/src/obj-type/dto/update-obj-type.dto.ts ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UpdateObjTypeDto = void 0;
+const mapped_types_1 = __webpack_require__(/*! @nestjs/mapped-types */ "@nestjs/mapped-types");
+const create_obj_type_dto_1 = __webpack_require__(/*! ./create-obj-type.dto */ "./libs/contracts/src/obj-type/dto/create-obj-type.dto.ts");
+class UpdateObjTypeDto extends (0, mapped_types_1.PartialType)(create_obj_type_dto_1.CreateObjTypeDto) {
+    id;
+}
+exports.UpdateObjTypeDto = UpdateObjTypeDto;
 
 
 /***/ }),
