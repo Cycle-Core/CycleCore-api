@@ -683,10 +683,12 @@ const users_module_1 = __webpack_require__(2);
 const microservices_1 = __webpack_require__(13);
 async function bootstrap() {
     const app = await core_1.NestFactory.createMicroservice(users_module_1.UsersModule, {
-        transport: microservices_1.Transport.TCP,
+        transport: microservices_1.Transport.REDIS,
         options: {
-            host: '0.0.0.0',
-            port: parseInt(process.env.PORT || '3001'),
+            host: process.env.REDIS_HOST,
+            port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,
+            password: process.env.REDIS_PASSWORD || undefined,
+            username: process.env.REDIS_USERNAME || undefined,
         },
     });
     await app.listen();

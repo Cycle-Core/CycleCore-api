@@ -8,7 +8,6 @@
   "scripts": {
     "start:api": "nest start api",
     "start:users": "nest start users",
-
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
@@ -31,6 +30,7 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
     "class-validator": "^0.14.2",
+    "ioredis": "^5.8.0",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",

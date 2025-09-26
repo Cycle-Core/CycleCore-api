@@ -35,10 +35,12 @@ exports.ApiModule = ApiModule = __decorate([
             microservices_1.ClientsModule.register([
                 {
                     name: 'USERS_SERVICE',
-                    transport: microservices_1.Transport.TCP,
+                    transport: microservices_1.Transport.REDIS,
                     options: {
-                        host: process.env.USERS_SERVICE_HOST || '127.0.0.1',
-                        port: parseInt(process.env.USERS_SERVICE_PORT || '3001'),
+                        host: process.env.REDIS_HOST,
+                        port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,
+                        password: process.env.REDIS_PASSWORD || undefined,
+                        username: process.env.REDIS_USERNAME || undefined,
                     },
                 },
             ]),
