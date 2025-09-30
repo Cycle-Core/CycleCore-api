@@ -19,6 +19,10 @@ export class Episode {
     })
     lifeline: Lifeline;
 
+    @Column({ type: 'jsonb', nullable: true })
+    data: Record<string, any>;
+
+
     @CreateDateColumn()
     createdAt: Date;
 

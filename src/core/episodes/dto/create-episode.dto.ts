@@ -10,4 +10,7 @@ export class CreateEpisodeDto {
     @IsNumber()
     @IsNotEmpty({ message: 'lifelineId is required' })
     lifelineId: number;
+
+    
+    data?: Record<string, any>;
 }
