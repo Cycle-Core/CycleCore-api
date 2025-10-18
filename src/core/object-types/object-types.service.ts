@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { Response } from 'express';
 
 import { ExportObjectTypeDto } from './dto/export-object-type.dto';
+import { ImportObjectTypeDto } from './dto/import-object-type.dto';
 
 @Injectable()
 export class ObjectTypesService {
@@ -55,7 +56,7 @@ export class ObjectTypesService {
     const objectType = await this.findOne(id);
 
     const dto = new ExportObjectTypeDto();
-  dto.name = objectType.name;
+    dto.name = objectType.name;
 
     const fileName = `${objectType.name.replace(/\s/g, '_')}.cycle`;
     const jsonData = JSON.stringify(dto, null, 2);
@@ -65,6 +66,7 @@ export class ObjectTypesService {
 
     res.send(jsonData);
   }
+
 
   async remove(id: number) {
     const objectType = await this.objectTypeRepository.findOne({
