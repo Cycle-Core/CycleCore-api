@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, Res } from '@nestjs/common';
 import { ObjectTypesService } from './object-types.service';
 import { CreateObjectTypeDto } from './dto/create-object-type.dto';
 import { UpdateObjectTypeDto } from './dto/update-object-type.dto';
+import type { Response } from 'express';
 
 @Controller('object-types')
 export class ObjectTypesController {
@@ -21,6 +22,11 @@ export class ObjectTypesController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.objectTypesService.findOne(+id);
+  }
+
+  @Get(':id/export')
+  export(@Param('id') id: string, @Res() res:Response) {
+    return this.objectTypesService.exportOneType(+id, res);
   }
 
   @Patch(':id')
