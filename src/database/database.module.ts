@@ -12,6 +12,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             database: process.env.DB_NAME || 'cycle_core',
             autoLoadEntities: true,
             synchronize: process.env.TYPEORM_SYNC ? process.env.TYPEORM_SYNC === 'true' : true,
+            ssl: {
+                rejectUnauthorized: false
+              },
         }),
     ],
 })
