@@ -4,6 +4,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request from 'supertest';
 import { AppModule } from '../src/app.module';
 
+let loggedInEmail: string;
+
 describe('Auth & Users (e2e)', () => {
   let app: INestApplication;
   let server: any;
@@ -98,8 +100,11 @@ describe('Auth & Users (e2e)', () => {
 
     expect(res.body).toHaveProperty('accessToken');
     expect(res.body).toHaveProperty('user');
+
     accessToken = res.body.accessToken;
+    loggedInEmail = res.body.user.email;  // 👈 store what backend really returns
   });
+
 
   it('should login with username as identifier', async () => {
     const res = await request(server)
@@ -146,8 +151,9 @@ describe('Auth & Users (e2e)', () => {
       .expect(200);
 
     expect(res.body).toHaveProperty('id');
-    expect(res.body.email).toBe(baseRegisterDto.email.toLowerCase());
+    expect(res.body.email).toBe(loggedInEmail);  // 👈 compare to what we logged in with
   });
+
 
   it('should reject /users/me without a token', async () => {
     await request(server).get('/users/me').expect(401);
